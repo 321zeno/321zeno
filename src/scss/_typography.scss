@@ -1,0 +1,62 @@
+// Alignment
+.ttu { text-transform: uppercase }
+.tac { text-align: center }
+
+.lnk {
+    color: $grey;
+    text-decoration: underline dotted;
+
+    &:hover,
+    &:active {
+        color: darken($grey, 30%);
+        text-decoration: none;
+    }
+}
+
+.b { font-weight: 700 }
+
+// Leading
+.l1 { line-height: 1 }
+.l093 { line-height: 0.93 }
+.l2 { line-height: 2 }
+
+// Font sizes
+.f1 { font-size: 2em }
+.f2 { font-size: 0.75em }
+.fp { font-size: 0.8em }
+
+// Measure
+.m { max-width: 21em }
+
+// Copy
+.h { font-family: 'Montserrat', Verdana, sans-serif }
+.t { font-family: 'Space Mono', Courier, monospace }
+
+.bulleted {
+    &:before {
+        content: "  \00b7  ";
+    }
+}
+
+@media (min-width: map-get($breakpoints, "md")) {
+
+    // Font sizes
+    .f1-m { font-size: 4.3em }
+
+    .tal-m { text-align: left }
+
+    &.deco-m {
+        position: relative;
+
+        &:after {
+            content: '';
+            display: block;
+            height: 3px;
+            width: 4em;
+            background: $grey;
+            position: absolute;
+            bottom: 3px;
+            left: -5em;
+        }
+    }
+}

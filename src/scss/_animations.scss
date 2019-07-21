@@ -1,0 +1,132 @@
+@import "node_modules/mathsass/dist/math";
+
+$side: 5em;
+$offset: ((sqrt(2) - 1)) * $side;
+$steps: 20;
+$stepSize: 100 / $steps;
+
+@keyframes top {
+    @for $i from 0 through $steps {
+        $progress: $i * $stepSize;
+        $percentage: percentage($progress/100);
+
+        #{$percentage} {
+            $angle: ($progress) /100 * 360deg;
+            $edge_angle: $angle % 90;
+            $bottom_offset: $offset * -5;
+            transform: translateY(cos($edge_angle) * sin($edge_angle) * $bottom_offset) rotate($angle);
+        }
+    }
+}
+
+@keyframes middle {
+    @for $i from 1 through $steps {
+        0% {
+            transform: translateY(0) rotate(360deg);
+        }
+
+        $progress: $i * $stepSize;
+        $percentage: percentage($progress/100);
+
+        #{$percentage} {
+            $angle: (100 - $progress) /100 * 360deg;
+            $edge_angle: $angle % 90;
+            $middle_offset: $offset * -3;
+            transform: translateY(cos($edge_angle) * sin($edge_angle) * $middle_offset) rotate($angle);
+        }
+    }
+}
+
+@keyframes bottom {
+    @for $i from 0 through $steps {
+        $progress: $i * $stepSize;
+        $percentage: percentage($progress/100);
+
+        #{$percentage} {
+            $angle: ($progress) /100 * 360deg;
+            $edge_angle: $angle % 90;
+            $bottom_offset: $offset * -1;
+            transform: translateY(cos($edge_angle) * sin($edge_angle) * $bottom_offset) rotate($angle);
+        }
+    }
+}
+
+@keyframes sliding {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.animation {
+    padding-top: 2 * $side;
+    margin: 0 auto;
+    width: 3 * $side;
+    overflow: hidden;
+    padding-bottom: 5rem;
+}
+
+.square {
+    border: 1px solid $grey;
+    height: $side;
+    width: $side;
+    box-sizing: border-box;
+    margin-left: $side;
+}
+
+.square:nth-child(1) {
+    animation: top 4.6s linear infinite;
+}
+
+.square:nth-child(2) {
+    animation: middle 4.6s linear infinite;
+}
+
+.square:nth-child(3) {
+    animation: bottom 4.6s linear infinite;
+}
+
+.floor {
+    border-top: 2px dashed $grey;
+    width: 10 * $side;
+    animation: sliding 5.5s linear infinite;
+}
+
+header {
+    transition: background 0.2s linear;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .square:nth-child(1),
+    .square:nth-child(2),
+    .square:nth-child(3),
+    .floor {
+        animation: none;
+    }
+
+    $progress: 0.5 * $stepSize;
+    $percentage: percentage($progress/100);
+    $angle: ($progress) / 100 * 360deg;
+    $edge_angle: $angle % 90;
+
+    .square:nth-child(1) {
+        $bottom_offset: $offset * -5;
+        transform: translateY(cos($edge_angle) * sin($edge_angle) * $bottom_offset) rotate($angle);
+    }
+
+    .square:nth-child(2) {
+        $angle: (100 - $progress) /100 * 360deg;
+        $middle_offset: $offset * -3;
+        transform: translateY(cos($edge_angle) * sin($edge_angle) * $middle_offset) rotate($angle);
+    }
+
+    .square:nth-child(3) {
+        $angle: ($progress) / 100 * 360deg;
+        $bottom_offset: $offset * -1;
+        transform: translateY(cos($edge_angle) * sin($edge_angle) * $bottom_offset) rotate($angle);
+    }
+}

@@ -1,0 +1,31 @@
+.ul-inl {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    & > li {
+        display: inline-block;
+    }
+}
+
+// Margins
+.center {
+    margin-left: auto;
+    margin-right: auto;
+}
+.mt1 { margin-top: 1rem }
+.mb1 { margin-bottom: 1rem }
+.mb2 { margin-bottom: 2rem }
+.mb3 { margin-bottom: 3rem }
+
+// Padding
+.pl1 { padding-left: 1rem }
+.pr1 { padding-right: 1rem }
+
+@media (min-width: map-get($breakpoints, "md")) {
+    .plt2-m { margin-top: -2rem }
+    .mb1-m { margin-bottom: 1rem }
+    .mb3-m { margin-bottom: 3rem }
+    .pl4-m { padding-left: 4rem }
+    .pr0-m { padding-right: 0 }
+    .pl0-m { padding-left: 0 }
+}

@@ -1,0 +1,7 @@
+@media (prefers-color-scheme: dark) {
+    body { background: $aegean }
+    .bgc1 { background: $magenta }
+    .tc1, .lnk { color: $cream }
+    .square, .floor { border-color: $cream }
+    .deco-m:after { background: $cream }
+}

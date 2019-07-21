@@ -1,0 +1,37 @@
+{
+    "tasks": {
+        "sass": [
+            {
+                "source": "./src/scss/**/*.scss",
+                "output": "./dist/css"
+            }
+        ],
+        "js": [
+            {
+                "source": "./src/sw.js",
+                "output": "./dist/sw.js"
+            }
+        ],
+        "images": [
+            {
+                "source": "./src/images/**/*",
+                "output": "./dist/images"
+            }
+        ],
+        "clean": [
+            {
+                "source": ["./dist"]
+            }
+        ],
+        "copy": [
+            {
+                "source": ["src/**/*", "!src/{scss,js,images}/**", "!src/sw.js"],
+                "output": "./dist"
+            }
+        ]
+    },
+    "browserSync": {
+        "baseDir": "./dist/",
+        "files": ["./dist/**/*.css", "./dist/**/*.js", "./dist/**/*.html"]
+    }
+}
