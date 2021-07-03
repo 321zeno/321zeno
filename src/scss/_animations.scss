@@ -1,17 +1,18 @@
+@use "sass:math";
 @import "node_modules/mathsass/dist/math";
 
 $side: 5em;
 $offset: ((sqrt(2) - 1)) * $side;
 $steps: 20;
-$stepSize: 100 / $steps;
+$stepSize: math.div(100, $steps);
 
 @keyframes top {
     @for $i from 0 through $steps {
         $progress: $i * $stepSize;
-        $percentage: percentage($progress/100);
+        $percentage: percentage(math.div($progress, 100));
 
         #{$percentage} {
-            $angle: ($progress) /100 * 360deg;
+            $angle: math.div($progress, 100) * 360deg;
             $edge_angle: $angle % 90;
             $bottom_offset: $offset * -5;
             transform: translateY(cos($edge_angle) * sin($edge_angle) * $bottom_offset) rotate($angle);

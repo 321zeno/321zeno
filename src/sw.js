@@ -1,6 +1,6 @@
 "use strict"
 
-const cacheName = "321zeno-v1"
+const cacheName = `321zeno-v1-${process.env.SW_VERSION}`
 const cacheFiles = ["/index.html", "/css/main.css"]
 
 self.addEventListener("install", e => {
